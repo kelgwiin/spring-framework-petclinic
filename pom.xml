@@ -8,7 +8,8 @@
 
     <name>petclinic</name>
     <packaging>war</packaging>
-    <description>A Spring Framework application based on JSP, Spring MVC, Spring Data JPA, Hibernate and JDBC</description>
+    <description>A Spring Framework application based on JSP, Spring MVC, Spring Data JPA, Hibernate and JDBC
+    </description>
     <url>https://github.com/spring-petclinic/</url>
 
     <properties>
@@ -19,8 +20,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Spring -->
+        <!--        Versions-->
         <spring-framework.version>5.1.0.RELEASE</spring-framework.version>
         <spring-data-jdbc.version>2.0.0.M1</spring-data-jdbc.version>
+        <spring-security.version>5.1.5.RELEASE</spring-security.version>
 
         <!-- Web dependencies -->
         <!-- Version update should also be done in wro.xml, petclinic.less and static resources: htmlHeader.tag and footer.tag-->
@@ -411,7 +414,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory</wroManagerFactory>
+                    <wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory
+                    </wroManagerFactory>
                     <cssDestinationFolder>${project.build.directory}/petclinic/resources/css</cssDestinationFolder>
                     <wroFile>${basedir}/src/main/wro/wro.xml</wroFile>
                     <extraConfigFile>${basedir}/src/main/wro/wro.properties</extraConfigFile>
@@ -455,6 +459,18 @@
                     <artifactId>hsqldb</artifactId>
                     <version>${hsqldb.version}</version>
                     <scope>runtime</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.springframework.security</groupId>
+                    <artifactId>spring-security-web</artifactId>
+                    <version>${spring-security.version}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.springframework.security</groupId>
+                    <artifactId>spring-security-config</artifactId>
+                    <version>${spring-security.version}</version>
                 </dependency>
             </dependencies>
         </profile>
@@ -528,7 +544,7 @@
                 </dependency>
             </dependencies>
         </profile>
-   </profiles>
+    </profiles>
 
     <repositories>
         <repository>

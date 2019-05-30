@@ -33,6 +33,17 @@
                     <span>Veterinarians</span>
                 </petclinic:menuItem>
 
+                <petclinic:menuItem active="${name eq 'admin'}" url="/admin/home.html" title="System configuration">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    <span>Admin</span>
+                </petclinic:menuItem>
+
+                <petclinic:menuItem active="${name eq 'logout'}" url="/logout"
+                                    title="logout">
+                    <span class="glyphicon glyphicon-log-out" aria-hidden="true" id="logoutEl"></span>
+                    <span>Logout</span>
+                </petclinic:menuItem>
+
                 <petclinic:menuItem active="${name eq 'error'}" url="/oups.html"
                             title="trigger a RuntimeException to see how it is handled">
                     <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>

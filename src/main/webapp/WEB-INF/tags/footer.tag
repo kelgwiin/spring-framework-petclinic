@@ -12,3 +12,14 @@
 <spring:url value="/webjars/bootstrap/3.3.6/js/bootstrap.min.js" var="bootstrapJs"/>
 <script src="${bootstrapJs}"></script>
 
+<%--<script>--%>
+<%--    $(function () {--%>
+<%--        $("#logoutEl").parent().click(function() {--%>
+<%--            $.ajax({--%>
+<%--                type: 'POST',--%>
+<%--                url: 'logout',--%>
+<%--                async:false--%>
+<%--            });--%>
+<%--        });--%>
+<%--    });--%>
+<%--</script>--%>

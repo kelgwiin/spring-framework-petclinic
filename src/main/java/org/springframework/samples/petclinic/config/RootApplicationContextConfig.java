@@ -38,15 +38,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
+import org.springframework.samples.petclinic.WebSecurityConfig;
 
 @Configuration
-@Import({BusinessConfig.class, ToolsConfig.class})
+@Import({BusinessConfig.class, ToolsConfig.class, WebSecurityConfig.class})
 public class RootApplicationContextConfig {
-	
+
     private static final Logger LOG = LoggerFactory.getLogger(RootApplicationContextConfig.class);
 
     @Autowired
-    private Environment         env;
+    private Environment env;
 
     /**
      * Application custom initialization code.
