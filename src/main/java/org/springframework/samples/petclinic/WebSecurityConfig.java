@@ -16,7 +16,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -67,8 +68,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
             .and()
             .logout()
-            .logoutSuccessHandler(
-                (httpServletRequest, httpServletResponse, authentication) ->
-                    logger.info("Performed logout, thrown exceptions do not affect logout process"));
+            .logoutSuccessHandler(this::handleSuccessRequest);
+    }
+
+    private void handleSuccessRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+                                      Authentication authentication) throws IOException, ServletException {
+        RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+        String targetUrl = "/";
+
+        logger.info("Performed logout, thrown exceptions do not affect logout process");
+        redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, targetUrl);
     }
 }
