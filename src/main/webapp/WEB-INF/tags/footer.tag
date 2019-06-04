@@ -23,3 +23,12 @@
 <%--        });--%>
 <%--    });--%>
 <%--</script>--%>
+
+
+<script>
+    $(function () {
+        $("#logoutEl").parent().click(function() {
+            $('#frmLogout').submit();
+        });
+    });
+</script>

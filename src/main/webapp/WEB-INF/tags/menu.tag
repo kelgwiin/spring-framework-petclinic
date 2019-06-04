@@ -38,7 +38,7 @@
                     <span>Admin</span>
                 </petclinic:menuItem>
 
-                <petclinic:menuItem active="${name eq 'logout'}" url="/logout"
+                <petclinic:menuItem active="${name eq 'logout'}" url="#"
                                     title="logout">
                     <span class="glyphicon glyphicon-log-out" aria-hidden="true" id="logoutEl"></span>
                     <span>Logout</span>
@@ -54,3 +54,6 @@
         </div>
     </div>
 </nav>
+
+<spring:url value="/logout.html" var="logoutUrl"/>
+<form id="frmLogout" action="${logoutUrl}" method="post"></form>

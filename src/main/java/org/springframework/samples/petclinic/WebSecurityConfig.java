@@ -6,22 +6,23 @@ package org.springframework.samples.petclinic;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.samples.petclinic.config.MyAuthenticationSuccessHandler;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.io.IOException;
 
 /**
@@ -33,15 +34,23 @@ import java.io.IOException;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
 
+    @Autowired
+    private DataSource dataSource;
+
+    //custom-mod
     @Override
     @Bean
     public UserDetailsService userDetailsService() {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("user").password("password").roles("USER").build());
+//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+//        manager.createUser(User.withUsername("user").password("password").roles("USER").build());
+//
+//        manager.createUser(User.withUsername("admin").password("root").roles("ADMIN").build());
+//        return manager;
 
-        manager.createUser(User.withUsername("admin").password("root").roles("ADMIN").build());
+        JdbcDaoImpl usrSrv = new JdbcDaoImpl();
+        usrSrv.setDataSource(dataSource);
 
-        return manager;
+        return usrSrv;
     }
 
     @SuppressWarnings("deprecation")
@@ -68,7 +77,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
             .and()
             .logout()
-            .logoutSuccessHandler(this::handleSuccessRequest);
+            .logoutUrl("/logout.html")
+            .permitAll()
+            .invalidateHttpSession(true)
+//            .logoutSuccessHandler(this::handleSuccessRequest)
+        ;
     }
 
     private void handleSuccessRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
