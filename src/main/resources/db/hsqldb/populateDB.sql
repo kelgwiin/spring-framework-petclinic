@@ -1,3 +1,5 @@
+-- noinspection SqlDialectInspectionForFile
+
 INSERT INTO vets VALUES (1, 'James', 'Carter');
 INSERT INTO vets VALUES (2, 'Helen', 'Leary');
 INSERT INTO vets VALUES (3, 'Linda', 'Douglas');
@@ -58,3 +60,5 @@ INSERT INTO authorities VALUES ('fromero', 'ROLE_USER');
 INSERT INTO users VALUES ('lrobbio', '5678', true, 'theboss@belatrixsf.com');
 INSERT INTO authorities VALUES ('lrobbio', 'ROLE_ADMIN');
 
+INSERT INTO users VALUES ('browser.local.co', '', true, 'browser@belatrixsf.com');
+INSERT INTO authorities VALUES ('browser.local.co', 'ROLE_USER');

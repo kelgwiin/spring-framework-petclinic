@@ -1,0 +1,51 @@
+version: 1
+
+dn: o=belax
+objectClass: organization
+objectClass: extensibleObject
+objectClass: top
+o: belax
+
+dn: ou=users,o=belax
+objectClass: extensibleObject
+objectClass: organizationalUnit
+objectClass: top
+ou: users
+
+dn: ou=groups,o=belax
+objectClass: extensibleObject
+objectClass: organizationalUnit
+objectClass: top
+ou: groups
+
+dn: cn=User,ou=groups,o=belax
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: User
+uniqueMember: cn=fromero,ou=users,o=belax
+
+dn: cn=Admin,ou=groups,o=belax
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: Admin
+uniqueMember: cn=lrobbio,ou=users,o=belax
+
+dn: cn=lrobbio,ou=users,o=belax
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: lrobbio
+sn: Robbio
+uid: lrobbio
+userPassword: 5678
+
+dn: cn=fromero,ou=users,o=belax
+objectClass: organizationalPerson
+objectClass: person
+objectClass: inetOrgPerson
+objectClass: top
+cn: fromero
+sn: Romero
+uid: fromero
+userPassword: 1234
