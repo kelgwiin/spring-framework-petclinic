@@ -69,8 +69,6 @@
         <!-- Maven plugins -->
         <jetty-maven-plugin.version>9.4.12.v20180830</jetty-maven-plugin.version>
 
-        <!--    LDAP    -->
-        <apacheds-version>1.5.5</apacheds-version>
     </properties>
 
     <dependencyManagement>
@@ -276,24 +274,6 @@
             <artifactId>hamcrest-all</artifactId>
             <version>${hamcrest.version}</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-ldap</artifactId>
-            <version>5.1.2.RELEASE</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.security</groupId>
-                    <artifactId>spring-security-core</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.directory.server</groupId>
-            <artifactId>apacheds-all</artifactId>
-            <version>${apacheds-version}</version>
         </dependency>
 
     </dependencies>
