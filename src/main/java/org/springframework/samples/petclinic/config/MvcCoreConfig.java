@@ -62,7 +62,7 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 @Import(MvcViewConfig.class)
 // POJOs labeled with the @Controller and @Service annotations are
 // auto-detected.
-@ComponentScan(basePackages = { "org.springframework.samples.petclinic.web" })
+@ComponentScan(basePackages = { "org.springframework.samples.petclinic.web", "org.springframework.samples.petclinic.rest" })
 public class MvcCoreConfig implements WebMvcConfigurer {
 
 	@Autowired
@@ -71,7 +71,7 @@ public class MvcCoreConfig implements WebMvcConfigurer {
 	@Override
 	public void configureContentNegotiation(
 			ContentNegotiationConfigurer configurer) {
-		configurer.ignoreAcceptHeader(true);
+		configurer.ignoreAcceptHeader(false);
 		configurer.defaultContentType(MediaType.TEXT_HTML);
 		configurer.mediaType("html", MediaType.TEXT_HTML);
 		configurer.mediaType("xml", MediaType.APPLICATION_XML);
